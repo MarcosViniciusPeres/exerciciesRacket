@@ -1,0 +1,38 @@
+#lang racket
+
+(require examples)
+
+;;Defina uma função que devolva o último elemento de uma lista. Use a função error (com uma string
+;;de mensagem como argumento) para indicar erro se a lista for vazia.
+
+;; ListNumero -> String | Numero
+
+
+(define (error mensage)
+    mensage
+)
+
+(examples
+ (check-equal? (lastElementList empty) "Lista esta vazia")
+ (check-equal? (lastElementList (cons 1 (cons 2 (cons 3 empty)))) 3)
+)
+
+
+;; Modelo para lista
+;;(define (fn-para-ldn ldn)
+;;  (cond
+;;    [(empty? ldn) ...]
+;;    [else ... (first ldn)
+;;          ... (fn-para-ldn (rest ldn)) ... ]))
+
+
+(define (lastElementList lst)
+  (cond
+   [(empty? lst) (error "Lista esta vazia")]
+    [else (if (empty? (rest lst))
+              (first lst)
+              (lastElementList (rest lst))
+              )]))
+
+     
+
